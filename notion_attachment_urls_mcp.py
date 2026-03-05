@@ -11,13 +11,24 @@ Environment variables:
 import json
 import os
 import re
+from pathlib import Path
 
 import requests
+from dotenv import load_dotenv
 from fastmcp import FastMCP
+
+# Load config from a well-known location (GUI apps like Claude Desktop
+# don't inherit shell environment variables or launchctl setenv values)
+load_dotenv(Path.home() / ".notion-attachment-urls-mcp")
 
 mcp = FastMCP("notion-attachments")
 
-NOTION_API_KEY = os.environ["NOTION_API_KEY"]
+NOTION_API_KEY = os.environ.get("NOTION_API_KEY", "")
+if not NOTION_API_KEY:
+    raise RuntimeError(
+        "NOTION_API_KEY not set. Create ~/.notion-attachment-urls-mcp "
+        "with contents: NOTION_API_KEY=ntn_your_key_here"
+    )
 NOTION_HEADERS = {
     "Authorization": f"Bearer {NOTION_API_KEY}",
     "Notion-Version": "2022-06-28",
