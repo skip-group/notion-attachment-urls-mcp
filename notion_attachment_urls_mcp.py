@@ -10,7 +10,7 @@ Environment variables:
 
 import json
 import os
-import pwd
+import platform
 import re
 from pathlib import Path
 
@@ -18,10 +18,21 @@ import requests
 from dotenv import load_dotenv
 from fastmcp import FastMCP
 
-# Get the real home directory from the system user database, not $HOME
-# (sandboxed environments like Claude Cowork override $HOME)
-real_home = Path(pwd.getpwuid(os.getuid()).pw_dir)
-load_dotenv(real_home / ".notion-attachment-urls-mcp")
+
+def get_real_home() -> Path:
+    """Get the real home directory, even in sandboxed environments.
+
+    Sandboxed environments (e.g. Claude Cowork) may override $HOME,
+    so Path.home() can point to the wrong directory.
+    """
+    if platform.system() != "Windows":
+        import pwd
+        return Path(pwd.getpwuid(os.getuid()).pw_dir)
+    # Windows: USERPROFILE is reliable and not typically sandboxed
+    return Path(os.environ.get("USERPROFILE", Path.home()))
+
+
+load_dotenv(get_real_home() / ".notion-attachment-urls-mcp")
 
 mcp = FastMCP("notion-attachments")
 
