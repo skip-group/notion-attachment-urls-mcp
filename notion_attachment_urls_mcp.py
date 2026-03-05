@@ -10,6 +10,7 @@ Environment variables:
 
 import json
 import os
+import pwd
 import re
 from pathlib import Path
 
@@ -17,9 +18,10 @@ import requests
 from dotenv import load_dotenv
 from fastmcp import FastMCP
 
-# Load config from a well-known location (GUI apps like Claude Desktop
-# don't inherit shell environment variables or launchctl setenv values)
-load_dotenv(Path.home() / ".notion-attachment-urls-mcp")
+# Get the real home directory from the system user database, not $HOME
+# (sandboxed environments like Claude Cowork override $HOME)
+real_home = Path(pwd.getpwuid(os.getuid()).pw_dir)
+load_dotenv(real_home / ".notion-attachment-urls-mcp")
 
 mcp = FastMCP("notion-attachments")
 
