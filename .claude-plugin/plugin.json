@@ -1,0 +1,12 @@
+{
+  "name": "notion-attachment-urls",
+  "version": "1.0.0",
+  "description": "Get temporary download URLs for file attachments on Notion pages. Bridges the gap where the Notion MCP returns internal file references instead of actual S3 URLs.",
+  "author": {
+    "name": "Skip Capital"
+  },
+  "license": "MIT",
+  "keywords": ["notion", "attachments", "mcp"],
+  "mcpServers": "./.mcp.json",
+  "commands": ["./commands/"]
+}

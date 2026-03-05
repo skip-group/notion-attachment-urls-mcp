@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "notion-attachments": {
-      "command": ".venv/bin/python",
-      "args": ["notion_attachment_urls_mcp.py"],
+      "command": "uv",
+      "args": ["run", "--with", "fastmcp", "--with", "requests", "python", "${CLAUDE_PLUGIN_ROOT}/notion_attachment_urls_mcp.py"],
       "env": {
         "NOTION_API_KEY": "${NOTION_API_KEY}"
       }
