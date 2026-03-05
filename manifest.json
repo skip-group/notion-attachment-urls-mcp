@@ -1,0 +1,49 @@
+{
+  "manifest_version": "0.3",
+  "name": "notion-attachment-urls",
+  "display_name": "Notion Attachment URLs",
+  "version": "1.1.0",
+  "description": "Get temporary download URLs for file attachments on Notion pages",
+  "author": {
+    "name": "Skip Capital"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skip-group/notion-attachment-urls-mcp"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "NOTION_API_KEY": "${user_config.notion_api_key}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "get_notion_attachment_urls",
+      "description": "Get temporary download URLs for all file attachments on a Notion page"
+    }
+  ],
+  "user_config": {
+    "notion_api_key": {
+      "type": "string",
+      "title": "Notion API Key",
+      "description": "Your Notion integration API token (starts with ntn_). Create one at https://www.notion.so/profile/integrations",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "keywords": ["notion", "attachments", "files", "s3"],
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}

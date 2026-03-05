@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "notion-attachments": {
-      "command": "uv",
-      "args": ["run", "--with", "fastmcp", "--with", "requests", "--with", "python-dotenv", "python", "${CLAUDE_PLUGIN_ROOT}/notion_attachment_urls_mcp.py"]
-    }
-  }
-}
