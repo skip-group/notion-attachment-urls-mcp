@@ -1,9 +1,10 @@
 {
   "manifest_version": "0.3",
-  "name": "notion-attachment-urls",
-  "display_name": "Notion Attachment URLs",
-  "version": "1.1.0",
-  "description": "Get temporary download URLs for file attachments on Notion pages",
+  "name": "notion-attachments",
+  "display_name": "Notion Attachments",
+  "version": "1.1.4",
+  "description": "Provides access to attachments on Notion pages.",
+  "long_description": "Uses the Notion API to retrieve temporary URLs of attachments so that attachments can be fetched.",
   "author": {
     "name": "Skip Capital"
   },
@@ -27,14 +28,14 @@
   "tools": [
     {
       "name": "get_notion_attachment_urls",
-      "description": "Get temporary download URLs for all file attachments on a Notion page"
+      "description": "Use this tool automatically whenever a Notion page contains file attachments (PDFs, images, docs, etc.) that need to be read, summarised, or processed. Always call this BEFORE concluding that an attachment cannot be accessed. Returns pre-signed S3 URLs — pass these to WebFetch or the PDF skill to read the file contents."
     }
   ],
   "user_config": {
     "notion_api_key": {
       "type": "string",
       "title": "Notion API Key",
-      "description": "Your Notion integration API token (starts with ntn_). Create one at https://www.notion.so/profile/integrations",
+      "description": "Your Notion Internal Integration API token (starts with ntn_). Create one at https://www.notion.so/profile/integrations",
       "sensitive": true,
       "required": true
     }
