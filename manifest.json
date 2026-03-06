@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "notion-attachments",
   "display_name": "Notion Attachments",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Provides access to attachments on Notion pages.",
   "long_description": "Uses the Notion API to retrieve temporary URLs of attachments so that attachments can be fetched.",
   "author": {

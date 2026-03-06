@@ -90,7 +90,7 @@ async function getAttachmentsFromBlocks(pageId) {
 }
 
 const server = new Server(
-  { name: "notion-attachments", version: "1.1.4" },
+  { name: "notion-attachments", version: "1.1.5" },
   { capabilities: { tools: {} } },
 );
 
